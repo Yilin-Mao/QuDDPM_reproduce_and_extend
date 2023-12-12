@@ -1,4 +1,9 @@
 # QuDDPM_reproduce_and_extend
+
+更新：12.12增加了两比特去噪的演示，选择一个辅助比特，步数选择3（测量、不测量辅助比特）、5（测量辅助比特）。效果上步数为5，测量辅助比特最好。可改进的操作包括增加辅助比特，单步去噪量子门层数等。
+
+------------------------------------
+
 代码是对论文 ：Zhang, Bingzhi, et al. "Generative quantum machine learning via denoising diffusion probabilistic models." arXiv preprint arXiv:2310.05866 (2023).（https://arxiv.org/pdf/2310.05866.pdf ）中单比特散点在布洛赫球上的加噪去噪的复现，具体的原理、公式与量子电路基本架构参见论文。
 
 简单来说，电路每一步的加噪通过对量子比特施加RZ,RY,RZ,RZZ门实现，加噪参数已经预先定义好，去噪引入辅助比特，通过对原比特和辅助比特施加RX,RY,CZ门实现，通过优化参数量子电路，随机在sample里进行两两采样，使得每一步加噪去噪量子态距离尽量接近（实际操作中通过swaptest)实现，以训练出一个通用的量子去噪电路。训练好的去噪电路理论上可以直接输入噪声态对其进行还原。
